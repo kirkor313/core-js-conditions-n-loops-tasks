@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,10 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) return a;
+  if (b > a && b > c) return b;
+  return c;
 }
 
 /**
@@ -82,8 +84,11 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === 0 || b === 0 || c === 0) return false;
+  return (
+    (a === b && a + b > c) || (a === c && a + c > b) || (b === c && b + c > a)
+  );
 }
 
 /**
@@ -135,8 +140,12 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let check = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    check += str[i];
+  }
+  return str === check;
 }
 
 /**
@@ -153,8 +162,11 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (letter === str[i]) return i;
+  }
+  return -1;
 }
 
 /**
@@ -172,8 +184,13 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const numStr = String(num);
+  const digitStr = String(digit);
+  for (let i = 0; i < numStr.length; i += 1) {
+    if (digitStr === numStr[i]) return true;
+  }
+  return false;
 }
 
 /**
@@ -189,8 +206,23 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  for (let i = 1; i < arr.length; i += 1) {
+    let sumArrLeft = 0;
+    let sumArrRight = 0;
+    for (let j = 0; j < arr.length; j += 1) {
+      if (j < i) {
+        sumArrLeft += arr[j];
+      }
+      if (j > i) {
+        sumArrRight += arr[j];
+      }
+    }
+    if (sumArrLeft === sumArrRight) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
